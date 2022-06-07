@@ -1,0 +1,58 @@
+{% extends 'admin/layout.html' %}
+{% load static %}
+{% block content %}
+
+   
+
+
+<table id="table_id" class="display table table-striped table-hover table-bordered">
+
+
+
+
+
+
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Email</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+            <th>Last Login</th>
+            <th>Date Joined</th>
+            <th></th>
+        </tr>
+    </thead>
+    
+        <tbody>
+            {% for user in user_data %} 
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.last_login }}</td>
+                <td>{{ user.date_joined }}</td>  
+    
+                <td>
+                    {% if user.is_active %}
+                    <a href="{% url 'block_user' user.id %}" class="view btn btn-danger " title="View" data-toggle="tooltip">block<i class="fa fa-ban btn-danger ps-4">&#xE417;</i></a>
+                    {% else %}
+                    <a href="{% url 'unblock_user' user.id %}" class="view btn btn-success " title="View" data-toggle="tooltip" style="text-decoration: none;">unblock<i class="fa fa-unlock ps-2 ">&#xE417;</i></a>
+                    {% endif %} 
+                </td>  
+            </tr>  
+            {% endfor %}
+           
+        </tbody>
+    
+</table>
+
+
+
+
+
+
+{% endblock %}
